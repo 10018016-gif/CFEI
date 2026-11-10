@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Página oficial de la Confederación Internacional de Equipos Inventados.">
+  <title>CFEI | Confederación Internacional de Equipos Inventados</title>
+  <style>
+    :root {
+      --navy: #101b32;
+      --navy-2: #172746;
+      --blue: #244a7c;
+      --gold: #f2c75c;
+      --paper: #f4f6fa;
+      --ink: #172033;
+      --muted: #68758b;
+      --white: #fff;
+      --line: #e3e8f0;
+      --green: #2e9d70;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink); background: var(--paper); line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .topbar {
+      background: #0b1427; color: #dce6f5; text-align: center;
+      padding: 7px 16px; font-size: .78rem; letter-spacing: .12em;
+    }
+    header {
+      background: var(--navy); color: var(--white);
+      position: sticky; top: 0; z-index: 20;
+      box-shadow: 0 5px 22px #07122533;
+    }
+    .nav {
+      max-width: 1160px; margin: auto; padding: 14px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; min-width: 220px; }
+    .crest {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      border: 2px solid var(--gold); border-radius: 14px;
+      color: var(--gold); font-size: 1.25rem; font-weight: 900;
+      transform: skew(-5deg);
+    }
+    .brand strong { display: block; font-size: 1.15rem; letter-spacing: .1em; }
+    .brand small { color: #aebbd0; font-size: .62rem; letter-spacing: .07em; }
+    nav { display: flex; gap: 23px; align-items: center; flex-wrap: wrap; }
+    nav a { color: #e5ebf5; font-size: .88rem; font-weight: 700; }
+    nav a:hover { color: var(--gold); }
+    .menu-btn { display: none; background: transparent; border: 1px solid #53617a; color: white; border-radius: 8px; padding: 8px 11px; }
+    .hero {
+      color: white; min-height: 430px; display: flex; align-items: center;
+      background:
+        linear-gradient(90deg, rgba(8,18,37,.96) 0%, rgba(8,18,37,.82) 48%, rgba(8,18,37,.25) 100%),
+        url("https://images.unsplash.com/photo-1508098682722-e99c643e7f0b?auto=format&fit=crop&w=1900&q=85") center 55%/cover;
+    }
+    .hero-inner { width: min(1160px, 100%); margin: auto; padding: 65px 22px 75px; }
+    .eyebrow { color: var(--gold); font-weight: 800; letter-spacing: .18em; font-size: .78rem; }
+    h1 { max-width: 690px; margin: 14px 0; font-size: clamp(2.35rem, 6vw, 4.7rem); line-height: .99; letter-spacing: -.04em; }
+    .hero p { max-width: 560px; color: #d5deec; font-size: 1.06rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn { display: inline-block; border: 0; border-radius: 8px; padding: 12px 18px; font-weight: 800; cursor: pointer; }
+    .btn-gold { background: var(--gold); color: #18243a; }
+    .btn-outline { border: 1px solid #d5deec; color: white; background: transparent; }
+    .stats { max-width: 1060px; margin: -35px auto 0; padding: 0 22px; position: relative; }
+    .stats-grid { background: white; display: grid; grid-template-columns: repeat(3,1fr); border-radius: 14px; box-shadow: 0 12px 35px #13213a12; overflow: hidden; }
+    .stat { padding: 21px; text-align: center; border-right: 1px solid var(--line); }
+    .stat:last-child { border: 0; }
+    .stat b { display: block; font-size: 1.7rem; color: var(--navy); }
+    .stat span { color: var(--muted); text-transform: uppercase; font-size: .72rem; letter-spacing: .09em; font-weight: 800; }
+    main { max-width: 1160px; margin: auto; padding: 58px 22px 80px; }
+    section { scroll-margin-top: 100px; margin-bottom: 62px; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 18px; margin-bottom: 22px; }
+    .section-head h2 { margin: 4px 0 0; color: var(--navy); font-size: clamp(1.6rem, 3vw, 2.25rem); }
+    .section-kicker { color: var(--blue); text-transform: uppercase; letter-spacing: .15em; font-size: .72rem; font-weight: 900; }
+    .section-note { color: var(--muted); font-size: .88rem; }
+    .cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; }
+    .team-card, .panel { background: white; border: 1px solid var(--line); border-radius: 13px; }
+    .team-card { padding: 19px 14px; text-align: center; transition: transform .2s, box-shadow .2s; }
+    .team-card:hover { transform: translateY(-4px); box-shadow: 0 12px 25px #13213a12; }
+    .team-crest { width: 62px; height: 62px; border-radius: 18px; margin: 0 auto 12px; display: grid; place-items: center; color: white; font-weight: 900; font-size: 1.2rem; background: linear-gradient(145deg,var(--blue),var(--navy)); border: 3px solid #e8edf5; }
+    .team-card h3 { margin: 0; font-size: .98rem; }
+    .team-card p { margin: 4px 0 0; color: var(--muted); font-size: .75rem; }
+    .columns { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; }
+    .panel { overflow: hidden; }
+    .panel-title { padding: 16px 19px; background: var(--navy); color: white; font-weight: 800; display: flex; justify-content: space-between; gap: 12px; }
+    .panel-title small { color: #c2cee0; font-weight: 500; }
+    .match { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; padding: 15px 18px; border-bottom: 1px solid var(--line); }
+    .match:last-child { border-bottom: 0; }
+    .club { font-weight: 800; font-size: .88rem; }
+    .club:last-child { text-align: right; }
+    .score { background: #eef2f8; border-radius: 7px; padding: 6px 10px; font-weight: 900; color: var(--navy); white-space: nowrap; }
+    .match small { display: block; color: var(--muted); font-size: .7rem; font-weight: 500; }
+    .table-wrap { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; min-width: 480px; }
+    th, td { padding: 12px 13px; text-align: center; border-bottom: 1px solid var(--line); font-size: .84rem; }
+    th { background: #f5f7fb; color: var(--muted); font-size: .7rem; text-transform: uppercase; letter-spacing: .06em; }
+    td:first-child, th:first-child { text-align: left; }
+    .position { color: var(--blue); font-weight: 900; width: 35px; }
+    .club-name { font-weight: 800; }
+    .points { color: var(--navy); font-weight: 900; }
+    .news-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+    .news { background: white; border: 1px solid var(--line); border-radius: 13px; padding: 20px; }
+    .news .tag { color: var(--green); text-transform: uppercase; font-size: .68rem; font-weight: 900; letter-spacing: .1em; }
+    .news h3 { margin: 9px 0; color: var(--navy); }
+    .news p { color: var(--muted); font-size: .88rem; margin-bottom: 0; }
+    .notice { background: #fff8e5; border: 1px solid #f1dfaa; color: #72571a; padding: 12px 15px; border-radius: 9px; font-size: .8rem; margin-top: 18px; }
+    footer { background: #0b1427; color: #d5deec; padding: 35px 22px; }
+    .footer-inner { max-width: 1160px; margin: auto; display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer strong { color: white; letter-spacing: .12em; }
+    footer small { color: #9eacc2; }
+    @media (max-width: 800px) {
+      .cards { grid-template-columns: repeat(2,1fr); }
+      .columns { grid-template-columns: 1fr; }
+      .news-grid { grid-template-columns: 1fr; }
+      nav { display: none; position: absolute; top: 76px; left: 0; right: 0; padding: 18px 22px; background: var(--navy); flex-direction: column; align-items: flex-start; }
+      nav.open { display: flex; }
+      .menu-btn { display: block; }
+      .brand { min-width: 0; }
+    }
+    @media (max-width: 480px) {
+      .stats-grid { grid-template-columns: 1fr; }
+      .stat { border-right: 0; border-bottom: 1px solid var(--line); }
+      .stat:last-child { border-bottom: 0; }
+      .cards { gap: 10px; }
+      .team-card { padding: 15px 8px; }
+      .section-head { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">FÚTBOL • COMPETICIÓN • PASIÓN • RESPETO</div>
+  <header>
+    <div class="nav">
+      <a class="brand" href="#inicio" aria-label="CFEI inicio">
+        <div class="crest">CFEI</div>
+        <div><strong>CFEI</strong><small>CONFEDERACIÓN INTERNACIONAL<br>DE EQUIPOS INVENTADOS</small></div>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <nav id="mainNav">
+        <a href="#inicio">INICIO</a><a href="#equipos">EQUIPOS</a>
+        <a href="#partidos">PARTIDOS</a><a href="#clasificacion">CLASIFICACIÓN</a>
+        <a href="#noticias">NOTICIAS</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero" id="inicio">
+    <div class="hero-inner">
+      <div class="eyebrow">LA CASA DEL FÚTBOL FICTICIO</div>
+      <h1>UNA PASIÓN.<br>MUCHOS EQUIPOS.</h1>
+      <p>Bienvenidos a la Confederación Internacional de Equipos Inventados. Sigue los clubes, los encuentros y toda la emoción de nuestras competiciones.</p>
+      <div class="actions">
+        <a class="btn btn-gold" href="#clasificacion">VER CLASIFICACIÓN</a>
+        <a class="btn btn-outline" href="#equipos">CONOCER LOS EQUIPOS</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stats-grid">
+      <div class="stat"><b id="teamCount">8</b><span>Clubes participantes</span></div>
+      <div class="stat"><b>1</b><span>Confederación</span></div>
+      <div class="stat"><b>2026</b><span>Temporada</span></div>
+    </div>
+  </div>
+
+  <main>
+    <section id="equipos">
+      <div class="section-head">
+        <div><div class="section-kicker">Nuestros clubes</div><h2>Equipos participantes</h2></div>
+        <div class="section-note">Ocho clubes • Una misma pasión</div>
+      </div>
+      <div class="cards" id="teamsGrid"></div>
+    </section>
+
+    <section id="partidos">
+      <div class="section-head">
+        <div><div class="section-kicker">La emoción del juego</div><h2>Partidos y resultados</h2></div>
+        <div class="section-note">Calendario de ejemplo</div>
+      </div>
+      <div class="columns">
+        <div class="panel">
+          <div class="panel-title"><span>PRÓXIMOS ENCUENTROS</span><small>Jornada 1</small></div>
+          <div id="fixtures"></div>
+        </div>
+        <div class="panel">
+          <div class="panel-title"><span>ÚLTIMO RESULTADO</span><small>Marcador</small></div>
+          <div class="match">
+            <div class="club">Delfines del Sol<small>LOCAL</small></div>
+            <div class="score">— : —</div>
+            <div class="club">Tigres del Horizonte<small>VISITANTE</small></div>
+          </div>
+          <div style="padding:18px;color:var(--muted);font-size:.85rem">Todavía no hay resultados publicados. ¡Pronto tendremos acción!</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="clasificacion">
+      <div class="section-head">
+        <div><div class="section-kicker">La carrera por el título</div><h2>Tabla de clasificación</h2></div>
+        <div class="section-note">Temporada 2026</div>
+      </div>
+      <div class="panel">
+        <div class="panel-title"><span>PRIMERA DIVISIÓN CFEI</span><small>Posiciones</small></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Club</th><th>PJ</th><th>G</th><th>E</th><th>P</th><th>Pts</th></tr></thead>
+            <tbody id="standings"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="notice">Nota: esta es una plantilla inicial. Los partidos y la clasificación están en modo de ejemplo; actualiza los datos cuando comience tu torneo.</div>
+    </section>
+
+    <section id="noticias">
+      <div class="section-head">
+        <div><div class="section-kicker">Lo último de la confederación</div><h2>Noticias y anuncios</h2></div>
+      </div>
+      <div class="news-grid">
+        <article class="news"><div class="tag">Comunicado oficial</div><h3>Bienvenidos a CFEI</h3><p>La Confederación Internacional de Equipos Inventados reúne clubes para competir y disfrutar del fútbol.</p></article>
+        <article class="news"><div class="tag">Competición</div><h3>Se prepara una nueva temporada</h3><p>Próximamente se publicarán el calendario, los encuentros y las novedades del campeonato.</p></article>
+        <article class="news"><div class="tag">Comunidad</div><h3>Pasión por nuestros equipos</h3><p>Cada club tiene su propia identidad, sus colores y una afición que lo acompaña.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><strong>CFEI</strong><br><small>Confederación Internacional de Equipos Inventados</small></div>
+      <small>© 2026 CFEI. Sitio web de demostración para tu liga.</small>
+    </div>
+  </footer>
+
+  <script>
+    // EDITA AQUÍ LOS NOMBRES DE TUS EQUIPOS
+    const teams = [
+      "Delfines del Sol FC",
+      "Tigres del Horizonte FC",
+      "Pollos FC",
+      "Halcones FC",
+      "Real Garza FC",
+      "Toros de Fuego",
+      "Lobos FC",
+      "Real Olitec FC"
+    ];
+
+    // Datos iniciales de ejemplo. Puedes reemplazarlos por los de tu torneo.
+    const fixtures = [
+      ["Delfines del Sol FC", "Tigres del Horizonte FC"],
+      ["Pollos FC", "Halcones FC"],
+      ["Real Garza FC", "Toros de Fuego"],
+      ["Lobos FC", "Real Olitec FC"]
+    ];
+
+    const initials = name => name.split(" ").filter(Boolean).slice(0,2).map(w => w[0]).join("").toUpperCase();
+
+    document.getElementById("teamsGrid").innerHTML = teams.map((team, i) => `
+      <article class="team-card">
+        <div class="team-crest">${initials(team)}</div>
+        <h3>${team}</h3>
+        <p>Club participante</p>
+      </article>
+    `).join("");
+
+    document.getElementById("teamCount").textContent = teams.length;
+
+    document.getElementById("fixtures").innerHTML = fixtures.map((match, i) => `
+      <div class="match">
+        <div class="club">${match[0]}<small>LOCAL</small></div>
+        <div class="score">VS</div>
+        <div class="club">${match[1]}<small>VISITANTE</small></div>
+      </div>
+    `).join("");
+
+    document.getElementById("standings").innerHTML = teams.map((team, i) => `
+      <tr>
+        <td><span class="position">${i + 1}.</span> <span class="club-name">${team}</span></td>
+        <td>0</td><td>0</td><td>0</td><td>0</td><td class="points">0</td>
+      </tr>
+    `).join("");
+
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+    menuBtn.addEventListener("click", () => mainNav.classList.toggle("open"));
+    mainNav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => mainNav.classList.remove("open")));
+  </script>
+</body>
+</html>
